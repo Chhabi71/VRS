@@ -1,8 +1,5 @@
--- Purpose: Create vehicles table capturing fleet metadata, pricing, status, and tracking fields.
--- Website Section: Vehicle Catalog & Admin Fleet Management.
--- Developer Notes: Requires categories table; includes status lifecycle, GPS hook, and service metadata.
-DROP TABLE IF EXISTS vehicles;
-CREATE TABLE vehicles (
+-- Purpose: Create vehicles table capturing fleet metadata, pricing, status, and tracking fields.---
+CREATE TABLE IF NOT EXISTS vehicles (
 	id                    INT AUTO_INCREMENT PRIMARY KEY,
 	category_id           INT NOT NULL,
 	vehicle_type          ENUM('cars','bikes','luxury') NOT NULL DEFAULT 'cars',
@@ -12,7 +9,7 @@ CREATE TABLE vehicles (
 	driver_age_requirement INT NOT NULL,
 	image_path            VARCHAR(255),
 	number_of_seats       INT,
-	transmission_type     ENUM('manual','automatic','hybrid','N/A') DEFAULT 'manual'
+	transmission_type     ENUM('manual','automatic','hybrid','N/A') DEFAULT 'manual',
 	fuel_type             ENUM('petrol','diesel','electric') DEFAULT 'petrol',
 	license_plate         VARCHAR(50) NOT NULL UNIQUE,
 	status                ENUM('available','reserved','on_trip','overdue','maintenance') NOT NULL DEFAULT 'available',
